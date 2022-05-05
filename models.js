@@ -193,4 +193,13 @@ class User {
       return null;
     }
   }
+
+  async addFavorite(story) {
+    const response = await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: "POST",
+      data: { token: this.loginToken },
+    });
+    console.log(response);
+  }
 }

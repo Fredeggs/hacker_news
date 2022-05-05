@@ -30,7 +30,27 @@ $navLogin.on("click", navLoginClick);
 function updateNavOnLogin() {
   console.debug("updateNavOnLogin");
   $(".main-nav-links").show();
-  $navLogin.hide();
+  $navLogin.addClass("account-form hidden");
+  $navLogOut.addClass("account-form hidden");
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();
+}
+
+/** Show Story Submission form on click on "submit" */
+
+function navSubmitClick(evt) {
+  console.debug("navSubmitClick", evt);
+  hidePageComponents();
+  $storyForm.show();
+}
+
+$navSubmit.on("click", navSubmitClick);
+
+/** Show favorite stories on click on "favorites" */
+
+function navFavoritesClick(evt) {
+  console.debug("navFavoritesClick", evt);
+  hidePageComponents();
+  $loginForm.show();
+  $signupForm.show();
 }

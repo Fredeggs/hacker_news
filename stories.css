@@ -37,3 +37,15 @@
 .story-user {
   display: block;
 }
+
+.unfavorited {
+  fill: gray;
+  position: relative;
+  top: 2.5px;
+  left: 10px;
+  width: 15px;
+}
+
+.unfavorited.favorited {
+  fill: red;
+}

@@ -38,6 +38,8 @@
     <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
   </div>
   <div class="nav-right">
+    <a class="nav-link" href="#" id="nav-favorites">favorites</a>
+    <a class="nav-link" href="#" id="nav-submit">submit</a>
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
     <a class="nav-link" href="#" id="nav-user-profile"></a>
     <a class="hidden" id="nav-logout" href="#"><small>(logout)</small></a>
@@ -47,11 +49,33 @@
 <!-- area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
 
+  <!-- Submit stories form -->
+  <form action="#" id="story-form" class="submit-form hidden" method="post">
+    <h4>Create and Add a Story</h4>
+    <div class="story-input">
+      <label for="story-title">title</label>
+      <input id="story-title">
+    </div>
+    <div class="story-input">
+      <label for="story-author">author</label>
+      <input id="story-author">
+    </div>
+    <div class="story-input">
+      <label for="story-url">url</label>
+      <input id="story-url">
+    </div>
+    <button type="submit">submit</button>
+    <hr>
+  </form>
+
   <!-- loading message (removed by JS after stories loaded) -->
   <div id="stories-loading-msg">Loading&hellip;</div>
 
   <!-- List of all stories -->
   <ol id="all-stories-list" class="stories-list"></ol>
+
+  <!-- List of all favorited stories -->
+  <ol id="favorite-stories-list" class="stories-list"></ol>
 
 </section>
 

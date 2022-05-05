@@ -93,6 +93,7 @@ function saveUserCredentialsInLocalStorage() {
   if (currentUser) {
     localStorage.setItem("token", currentUser.loginToken);
     localStorage.setItem("username", currentUser.username);
+    localStorage.setItem("favorites", currentUser.favorites);
   }
 }
 
@@ -109,8 +110,15 @@ function saveUserCredentialsInLocalStorage() {
 
 function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
-
+  $loginForm.hide();
+  $signupForm.hide();
   $allStoriesList.show();
 
   updateNavOnLogin();
 }
+
+$allStoriesList.on("click", ".unfavorited", function (evt) {
+  console.log("click!");
+  console.log($(this));
+  $(this).toggleClass("favorited");
+});
