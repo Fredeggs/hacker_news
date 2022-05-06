@@ -10,9 +10,12 @@ nav {
 
 .navbar-brand {
   font-weight: bold;
+  font-size: 0.85rem;
+  margin: 0 3px;
 }
 
 .nav-link {
+  font-weight: normal;
   font-size: 0.85rem;
   margin: 0 3px;
 }

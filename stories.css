@@ -38,6 +38,10 @@
   display: block;
 }
 
+.story-remove {
+  display: block;
+}
+
 .unfavorited {
   fill: gray;
   position: relative;

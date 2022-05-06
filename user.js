@@ -97,6 +97,14 @@ function saveUserCredentialsInLocalStorage() {
   }
 }
 
+async function getCurrentUserFavorites() {
+  const token = localStorage.getItem("token");
+  const username = localStorage.getItem("username");
+  currentUser = await User.loginViaStoredCredentials(token, username);
+
+  return currentUser.favorites;
+}
+
 /******************************************************************************
  * General UI stuff about users
  */
@@ -110,15 +118,22 @@ function saveUserCredentialsInLocalStorage() {
 
 function updateUIOnUserLogin() {
   console.debug("updateUIOnUserLogin");
+  putStoriesOnPage();
   $loginForm.hide();
   $signupForm.hide();
+  $navSubmit.show();
+  $navFavorites.show();
   $allStoriesList.show();
 
   updateNavOnLogin();
 }
 
 $allStoriesList.on("click", ".unfavorited", function (evt) {
-  console.log("click!");
-  console.log($(this));
+  const storyId = $(this).closest("li").attr("id");
+  if ($(this).hasClass("favorited")) {
+    currentUser.removeFavorite(storyId);
+  } else {
+    currentUser.addFavorite(storyId);
+  }
   $(this).toggleClass("favorited");
 });

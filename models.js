@@ -23,8 +23,8 @@ class Story {
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
-    // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    const urlLocation = new URL(this.url, location);
+    return urlLocation.hostname;
   }
 }
 
@@ -72,14 +72,23 @@ class StoryList {
    */
 
   async addStory(user, aStory) {
-    // UNIMPLEMENTED: complete this function!
     const response = await axios({
       url: `${BASE_URL}/stories`,
       method: "POST",
       data: { token: user.loginToken, story: aStory },
     });
     const newStory = new Story(response.data.story);
+    console.log(newStory.storyId);
     return newStory;
+  }
+
+  async removeStory(user, storyId) {
+    const response = await axios({
+      url: `${BASE_URL}/stories/${storyId}`,
+      method: "DELETE",
+      data: { token: user.loginToken },
+    });
+    console.log(response);
   }
 }
 
@@ -194,12 +203,19 @@ class User {
     }
   }
 
-  async addFavorite(story) {
+  async addFavorite(storyId) {
     const response = await axios({
-      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      url: `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
       method: "POST",
       data: { token: this.loginToken },
     });
-    console.log(response);
+  }
+
+  async removeFavorite(storyId) {
+    const response = await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${storyId}`,
+      method: "DELETE",
+      data: { token: this.loginToken },
+    });
   }
 }
